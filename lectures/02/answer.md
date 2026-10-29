@@ -1,4 +1,4 @@
-<img width="447" height="447" alt="image" src="https://github.com/user-attachments/assets/4f5d498c-3ced-4057-a748-2f3a5c812581" /># 第2回 解答
+# 第2回 解答
 
 ## 演習
 
