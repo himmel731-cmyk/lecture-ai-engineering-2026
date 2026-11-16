@@ -80,3 +80,24 @@ def get_lecture_summary(lecture: int) -> str:
         available = sorted(p.stem for p in (DATA_DIR / "lectures").glob("*.md"))
         return f"第{lecture}回の要点はまだありません。用意されている回: {', '.join(available)}"
     return path.read_text(encoding="utf-8")
+
+
+def search_materials(query: str) -> str:
+    """講義資料をベクトル検索し、根拠ページの本文と引用情報を返す。"""
+    from app.retrieval import search
+
+    return json.dumps({"results": search(query)}, ensure_ascii=False)
+
+
+def browse_tree(node_id: str | None = None) -> str:
+    """引数なしで目次の先頭を表示する。返されたIDだけを指定して次へ進む。ページIDなら全文を返す。"""
+    from app.retrieval import browse_tree as retrieve_tree
+
+    return json.dumps(retrieve_tree(node_id), ensure_ascii=False)
+
+
+def search_graph(query: str) -> str:
+    """ベクトル検索で見つけたページから、関連ページをグラフでたどって返す。"""
+    from app.retrieval import search_graph as retrieve_graph
+
+    return json.dumps(retrieve_graph(query), ensure_ascii=False)
